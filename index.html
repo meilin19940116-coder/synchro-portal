@@ -3,107 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synchro Elite - European Social Circle</title>
-    <meta name="description" content="Exclusive lifestyle management, networking, and private introductions for professionals in London and Europe.">
+    <title>Synchro - European Social Network</title>
+    <meta name="description" content="Join our European social networking community to connect and expand your circle.">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #050505; /* 极夜黑 */
-            color: #ffffff; 
-            margin: 0;
-            overflow-x: hidden;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* 干净的浅灰蓝色背景，类似主站背景 */
+            color: #0f172a;
         }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        
-        /* 黑金质感渐变 */
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #d4af37 0%, #f2d472 50%, #b8860b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .btn-primary {
+            background-color: #2563eb; /* 现代感的主题蓝 */
+            transition: all 0.3s ease;
         }
-        
-        .gold-gradient-bg {
-            background: linear-gradient(135deg, #d4af37 0%, #e5c158 50%, #b8860b 100%);
-        }
-
-        /* 呼吸光晕特效 */
-        .ambient-glow {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* 按钮悬浮特效 */
-        .btn-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-hover:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); 
-            filter: brightness(1.1);
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative">
+<body class="min-h-screen flex items-center justify-center p-4 relative">
 
-    <div class="ambient-glow bg-yellow-900/20 w-[60vw] h-[60vw] top-[-20%] left-[-10%]"></div>
-    <div class="ambient-glow bg-amber-800/10 w-[50vw] h-[50vw] bottom-[-10%] right-[-10%]"></div>
+    <div class="absolute top-6 right-6">
+        <select id="langSelect" onchange="changeLanguage()" class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm cursor-pointer outline-none">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="es">Español</option>
+            <option value="pt">Português</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="ru">Русский</option>
+            <option value="ar">العربية</option>
+        </select>
+    </div>
 
-    <main class="relative z-10 w-full max-w-[480px] mx-4">
-        <div class="bg-black/60 backdrop-blur-xl border border-white/10 p-10 md:p-12 rounded-2xl shadow-2xl text-center relative overflow-hidden">
-            
-            <div class="absolute top-0 left-0 w-full h-1 gold-gradient-bg opacity-80"></div>
+    <main class="w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-8 md:p-10 text-center relative overflow-hidden">
+        
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-white opacity-50 pointer-events-none"></div>
 
-            <div class="mb-10">
-                <div class="w-16 h-16 border border-yellow-600/40 rounded-full flex items-center justify-center mx-auto mb-5 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
-                    <span class="font-serif gold-gradient-text text-3xl font-bold italic">S</span>
-                </div>
-                <h1 class="font-serif text-3xl md:text-4xl text-white tracking-wide mb-2">Synchro Elite</h1>
-                <p class="text-[10px] tracking-[0.4em] text-yellow-600/80 uppercase font-medium">London • European Circle</p>
+        <div class="relative z-10">
+            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
             </div>
 
-            <div class="space-y-6 mb-12">
-                <h2 class="text-lg font-light text-gray-200 tracking-wider">
-                    Membership Entrance
-                </h2>
-                
-                <div class="flex items-center justify-center gap-4">
-                    <div class="h-px bg-white/10 flex-1"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-yellow-600/50"></div>
-                    <div class="h-px bg-white/10 flex-1"></div>
-                </div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2" id="titleText">Synchro Network</h1>
+            <p class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-6" id="subtitleText">European Social Community</p>
 
-                <p class="text-gray-400 text-sm leading-relaxed font-light italic px-2">
-                    "Connecting Europe's most exceptional individuals through bespoke social experiences and private introductions."
-                </p>
-            </div>
+            <div class="w-12 h-1 bg-gray-100 mx-auto mb-6 rounded-full"></div>
 
-            <div class="space-y-5">
-                <a href="https://www.synchro-match.com" 
-                   class="btn-hover block w-full py-4 gold-gradient-bg text-black font-bold tracking-[0.2em] rounded-sm uppercase text-[11px] shadow-lg">
-                    Enter Member Portal
-                </a>
-                
-                <div class="flex items-center justify-center gap-2 text-[9px] text-gray-500 uppercase tracking-widest font-medium">
-                    <svg class="w-3 h-3 text-yellow-600/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    Private • Verified • Secure
-                </div>
-            </div>
+            <p class="text-gray-500 text-[15px] leading-relaxed mb-10" id="descText">
+                Connect with people, expand your social circle, and join exciting events across Europe.
+            </p>
 
-            <div class="mt-12 pt-8 border-t border-white/5 text-[9px] text-gray-600 leading-relaxed uppercase tracking-widest">
-                © 2026 Synchro Elite Consulting. <br>
-                Authorized European Social Concierge. <br>
-                Registration Required for Entry.
-            </div>
+            <a href="https://www.synchro-match.com" 
+               class="btn-primary block w-full py-4 text-white font-semibold rounded-xl text-base shadow-md">
+                <span id="btnText">Join Community</span>
+            </a>
+
+            <p class="text-xs text-gray-400 mt-6" id="footerText">
+                © 2026 Synchro Social Network. Registration Required.
+            </p>
         </div>
     </main>
 
+    <script>
+        const translations = {
+            en: { title: "Synchro Network", subtitle: "European Social Community", desc: "Connect with people, expand your social circle, and join exciting events across Europe.", btn: "Join Community", footer: "© 2026 Synchro Social Network. Registration Required." },
+            zh: { title: "Synchro 网络", subtitle: "欧洲社交人脉社区", desc: "连接各界人士，拓展您在欧洲的社交圈，参与精彩活动。", btn: "加入社区", footer: "© 2026 Synchro 社交网络. 需注册进入。" },
+            es: { title: "Red Synchro", subtitle: "Comunidad Social Europea", desc: "Conecta con personas, expande tu círculo social y únete a eventos en toda Europa.", btn: "Unirse a la Comunidad", footer: "© 2026 Red Social Synchro. Registro requerido." },
+            pt: { title: "Rede Synchro", subtitle: "Comunidade Social Europeia", desc: "Conecte-se com pessoas, expanda seu círculo social e participe de eventos pela Europa.", btn: "Participar da Comunidade", footer: "© 2026 Rede Social Synchro. Registro obrigatório." },
+            ja: { title: "Synchro ネットワーク", subtitle: "ヨーロッパのソーシャルコミュニティ", desc: "人々とつながり、ソーシャルサークルを広げ、ヨーロッパ中のイベントに参加しましょう。", btn: "コミュニティに参加する", footer: "© 2026 Synchro ソーシャルネットワーク。 登録が必要です。" },
+            ko: { title: "Synchro 네트워크", subtitle: "유럽 소셜 커뮤니티", desc: "사람들과 연결하고, 소셜 서클을 넓히고, 유럽 전역의 이벤트에 참여하세요.", btn: "커뮤니티 가입", footer: "© 2026 Synchro 소셜 네트워크. 등록 필요." },
+            fr: { title: "Réseau Synchro", subtitle: "Communauté Sociale Européenne", desc: "Connectez-vous, élargissez votre cercle social et participez à des événements à travers l'Europe.", btn: "Rejoindre la Communauté", footer: "© 2026 Réseau Social Synchro. Inscription requise." },
+            de: { title: "Synchro Netzwerk", subtitle: "Europäische Soziale Gemeinschaft", desc: "Verbinde dich mit Menschen, erweitere deinen sozialen Kreis und nimm an Events in ganz Europa teil.", btn: "Community Beitreten", footer: "© 2026 Synchro Soziales Netzwerk. Registrierung erforderlich." },
+            it: { title: "Rete Synchro", subtitle: "Comunità Sociale Europea", desc: "Connettiti con le persone, espandi il tuo circolo sociale e unisciti a eventi in tutta Europa.", btn: "Unisciti alla Comunità", footer: "© 2026 Rete Sociale Synchro. Registrazione richiesta." },
+            ru: { title: "Сеть Synchro", subtitle: "Европейское социальное сообщество", desc: "Общайтесь с людьми, расширяйте свой круг общения и присоединяйтесь к мероприятиям по всей Европе.", btn: "Присоединиться", footer: "© 2026 Социальная сеть Synchro. Требуется регистрация." },
+            ar: { title: "شبكة Synchro", subtitle: "المجتمع الاجتماعي الأوروبي", desc: "تواصل مع الناس، وقم بتوسيع دائرتك الاجتماعية، وانضم إلى الفعاليات في جميع أنحاء أوروبا.", btn: "الانضمام للمجتمع", footer: "© 2026 شبكة Synchro الاجتماعية. التسجيل مطلوب." }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById("langSelect").value;
+            document.getElementById("titleText").innerText = translations[lang].title;
+            document.getElementById("subtitleText").innerText = translations[lang].subtitle;
+            document.getElementById("descText").innerText = translations[lang].desc;
+            document.getElementById("btnText").innerText = translations[lang].btn;
+            document.getElementById("footerText").innerText = translations[lang].footer;
+        }
+
+        // 页面加载时，尝试获取浏览器默认语言，如果没有对应语言则默认英文
+        window.onload = function() {
+            let userLang = navigator.language || navigator.userLanguage;
+            userLang = userLang.substring(0, 2).toLowerCase(); // 提取前两个字母 (比如 en-US 变成 en)
+            
+            if (translations[userLang]) {
+                document.getElementById("langSelect").value = userLang;
+                changeLanguage();
+            }
+        };
+    </script>
 </body>
 </html>
