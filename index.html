@@ -3,125 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synchro - European Social Network</title>
-    <meta name="description" content="Join our European social networking community to connect and expand your circle.">
-    
+    <title>Social Circle</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .btn-primary { background-color: #2563eb; transition: all 0.3s ease; }
-        .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); }
+        body { font-family: 'Inter', sans-serif; }
+        /* 背景图建议：找一张阳光、有生活气息的欧洲街头或聚会背景 */
+        .bg-custom {
+            background-image: linear-gradient(rgba(255, 192, 203, 0.4), rgba(255, 182, 193, 0.6)), url('你的图片地址.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .pink-glass {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+        .btn-pink {
+            background: linear-gradient(135deg, #ff8da1 0%, #ff6b81 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(255, 107, 129, 0.4);
+        }
     </style>
 
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-    
-      // 这是你的专属 Pixel ID
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
       ttq.load('D6O57BBC77UBBJ4JTB60');
       ttq.page();
     }(window, document, 'ttq');
     </script>
-    </head>
-<body class="min-h-screen flex items-center justify-center p-4 relative">
+</head>
+<body class="min-h-screen bg-custom flex items-center justify-center p-6">
 
-    <div class="absolute top-6 right-6">
-        <select id="langSelect" onchange="changeLanguage()" class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm cursor-pointer outline-none">
+    <div class="absolute top-6 right-6 z-20">
+        <select id="langSelect" onchange="changeLanguage()" class="bg-white/80 border-none text-pink-600 text-sm rounded-full px-4 py-2 shadow-sm cursor-pointer outline-none">
             <option value="en">English</option>
             <option value="zh">中文</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
             <option value="es">Español</option>
             <option value="pt">Português</option>
             <option value="ja">日本語</option>
             <option value="ko">한국어</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="it">Italiano</option>
             <option value="ru">Русский</option>
             <option value="ar">العربية</option>
         </select>
     </div>
 
-    <main class="w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-8 md:p-10 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-white opacity-50 pointer-events-none"></div>
-
-        <div class="relative z-10">
-            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-            </div>
-
-            <h1 class="text-2xl font-bold text-gray-900 mb-2" id="titleText">Synchro Network</h1>
-            <p class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-6" id="subtitleText">European Social Community</p>
-
-            <div class="w-12 h-1 bg-gray-100 mx-auto mb-6 rounded-full"></div>
-
-            <p class="text-gray-500 text-[15px] leading-relaxed mb-10" id="descText">
-                Connect with people, expand your social circle, and join exciting events across Europe.
-            </p>
-
-            <button onclick="handleJoinClick(event)" 
-               class="btn-primary block w-full py-4 text-white font-semibold rounded-xl text-base shadow-md cursor-pointer">
-                <span id="btnText">Join Community</span>
-            </button>
-
-            <p class="text-xs text-gray-400 mt-6" id="footerText">
-                © 2026 Synchro Social Network. Registration Required.
+    <main class="w-full max-w-sm pink-glass rounded-[2rem] p-10 text-center shadow-xl">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4" id="titleText">Social Circle</h1>
+            <div class="w-12 h-1 bg-pink-300 mx-auto mb-6 rounded-full"></div>
+            <p class="text-gray-600 text-lg font-medium leading-relaxed" id="descText">
+                Join our circle and meet new friends across Europe.
             </p>
         </div>
+
+        <button onclick="handleJoinClick(event)" class="btn-pink block w-full py-5 text-white font-bold rounded-2xl text-xl shadow-lg cursor-pointer">
+            <span id="btnText">Join Now</span>
+        </button>
+
+        <p class="text-[11px] text-gray-400 mt-8" id="footerText">
+            © 2026 Social Network. Privacy Protected.
+        </p>
     </main>
 
     <script>
-        // ⚠️⚠️⚠️ 老板注意！下面引号里的乱码，替换成你用 Base64 加密后的主站网址！
-        // （当前这个乱码代表的是 https://www.synchro-match.com）
         const ENCODED_URL = "aHR0cHM6Ly93d3cuc3luY2hyby1tYXRjaC5jb20=";
 
-        // 点击按钮触发 Pixel 追踪，延迟 0.3 秒后解密并跳转
         function handleJoinClick(event) {
             event.preventDefault(); 
-            
-            // 触发 TikTok 的按钮点击事件
-            if (typeof ttq !== 'undefined') {
-                ttq.track('ClickButton');
-            }
-            
-            // 解密并跳转主站
-            setTimeout(() => {
-                window.location.href = atob(ENCODED_URL);
-            }, 300);
+            if (typeof ttq !== 'undefined') { ttq.track('ClickButton'); }
+            setTimeout(() => { window.location.href = atob(ENCODED_URL); }, 300);
         }
 
-        // --- 以下是多语言切换逻辑 ---
         const translations = {
-            en: { title: "Synchro Network", subtitle: "European Social Community", desc: "Connect with people, expand your social circle, and join exciting events across Europe.", btn: "Join Community", footer: "© 2026 Synchro Social Network. Registration Required." },
-            zh: { title: "Synchro 网络", subtitle: "欧洲社交人脉社区", desc: "连接各界人士，拓展您在欧洲的社交圈，参与精彩活动。", btn: "加入社区", footer: "© 2026 Synchro 社交网络. 需注册进入。" },
-            es: { title: "Red Synchro", subtitle: "Comunidad Social Europea", desc: "Conecta con personas, expande tu círculo social y únete a eventos en toda Europa.", btn: "Unirse a la Comunidad", footer: "© 2026 Red Social Synchro. Registro requerido." },
-            pt: { title: "Rede Synchro", subtitle: "Comunidade Social Europeia", desc: "Conecte-se com pessoas, expanda seu círculo social e participe de eventos pela Europa.", btn: "Participar da Comunidade", footer: "© 2026 Rede Social Synchro. Registro obrigatório." },
-            ja: { title: "Synchro ネットワーク", subtitle: "ヨーロッパのソーシャルコミュニティ", desc: "人々とつながり、ソーシャルサークルを広げ、ヨーロッパ中のイベントに参加しましょう。", btn: "コミュニティに参加する", footer: "© 2026 Synchro ソーシャルネットワーク。 登録が必要です。" },
-            ko: { title: "Synchro 네트워크", subtitle: "유럽 소셜 커뮤니티", desc: "사람들과 연결하고, 소셜 서클을 넓히고, 유럽 전역의 이벤트에 참여하세요.", btn: "커뮤니티 가입", footer: "© 2026 Synchro 소셜 네트워크. 등록 필요." },
-            fr: { title: "Réseau Synchro", subtitle: "Communauté Sociale Européenne", desc: "Connectez-vous, élargissez votre cercle social et participez à des événements à travers l'Europe.", btn: "Rejoindre la Communauté", footer: "© 2026 Réseau Social Synchro. Inscription requise." },
-            de: { title: "Synchro Netzwerk", subtitle: "Europäische Soziale Gemeinschaft", desc: "Verbinde dich mit Menschen, erweitere deinen sozialen Kreis und nimm an Events in ganz Europa teil.", btn: "Community Beitreten", footer: "© 2026 Synchro Soziales Netzwerk. Registrierung erforderlich." },
-            it: { title: "Rete Synchro", subtitle: "Comunità Sociale Europea", desc: "Connettiti con le persone, espandi il tuo circolo sociale e unisciti a eventi in tutta Europa.", btn: "Unisciti alla Comunità", footer: "© 2026 Rete Sociale Synchro. Registrazione richiesta." },
-            ru: { title: "Сеть Synchro", subtitle: "Европейское социальное сообщество", desc: "Общайтесь с людьми, расширяйте свой круг общения и присоединяйтесь к мероприятиям по всей Европе.", btn: "Присоединиться", footer: "© 2026 Социальная сеть Synchro. Требуется регистрация." },
-            ar: { title: "شبكة Synchro", subtitle: "المجتمع الاجتماعي الأوروبي", desc: "تواصل مع الناس، وقم بتوسيع دائرتك الاجتماعية، وانضم إلى الفعاليات في جميع أنحاء أوروبا.", btn: "الانضمام للمجتمع", footer: "© 2026 شبكة Synchro الاجتماعية. التسجيل مطلوب." }
+            en: { title: "Social Circle", desc: "Join our circle and meet new friends across Europe.", btn: "Join Now", footer: "© 2026 Social Network. Privacy Protected." },
+            zh: { title: "社交圈子", desc: "加入我们的圈子，结交欧洲各地的朋友。", btn: "立即加入", footer: "© 2026 社交网络. 隐私受保护。" },
+            fr: { title: "Cercle Social", desc: "Rejoignez notre cercle et rencontrez de nouveaux amis en Europe.", btn: "Rejoindre", footer: "© 2026 Réseau Social. Confidentialité protégée." },
+            de: { title: "Sozialer Kreis", desc: "Tritt unserem Kreis bei und lerne neue Freunde in Europa kennen.", btn: "Jetzt beitreten", footer: "© 2026 Soziales Netzwerk. Privatsphäre geschützt." },
+            it: { title: "Cerchia Sociale", desc: "Unisciti alla nostra cerchia e incontra nuovi amici in tutta Europa.", btn: "Unisciti ora", footer: "© 2026 Social Network. Privacy protetta." },
+            es: { title: "Círculo Social", desc: "Únete a nuestro círculo y conoce nuevos amigos en toda Europa.", btn: "Únete ahora", footer: "© 2026 Red Social. Privacidad protegida." },
+            pt: { title: "Círculo Social", desc: "Junte-se ao nosso círculo e conheça novos amigos na Europa.", btn: "Entrar agora", footer: "© 2026 Rede Social. Privacidade protegida." },
+            ja: { title: "ソーシャルサークル", desc: "サークルに参加して、ヨーロッパ中の新しい友達と出会いましょう。", btn: "今すぐ参加", footer: "© 2026 ソーシャルネットワーク。プライバシー保護。" },
+            ko: { title: "소셜 서클", desc: "서클에 가입하여 유럽 전역의 새로운 친구들을 만나보세요.", btn: "지금 가입하기", footer: "© 2026 소셜 네트워크. 개인정보 보호." },
+            ru: { title: "Социальный круг", desc: "Присоединяйтесь к нам и заводите новых друзей по всей Европе.", btn: "Присоединиться", footer: "© 2026 Социальная сеть. Конфиденциальность соблюдена." },
+            ar: { title: "الدائرة الاجتماعية", desc: "انضم إلى دائرتنا وتعرف على أصدقاء جدد في جميع أنحاء أوروبا.", btn: "انضم الآن", footer: "© 2026 شبكة اجتماعية. الخصوصية محفوظة." }
         };
 
         function changeLanguage() {
             const lang = document.getElementById("langSelect").value;
-            document.getElementById("titleText").innerText = translations[lang].title;
-            document.getElementById("subtitleText").innerText = translations[lang].subtitle;
-            document.getElementById("descText").innerText = translations[lang].desc;
-            document.getElementById("btnText").innerText = translations[lang].btn;
-            document.getElementById("footerText").innerText = translations[lang].footer;
+            const t = translations[lang];
+            document.getElementById("titleText").innerText = t.title;
+            document.getElementById("descText").innerText = t.desc;
+            document.getElementById("btnText").innerText = t.btn;
+            document.getElementById("footerText").innerText = t.footer;
         }
 
         window.onload = function() {
-            let userLang = navigator.language || navigator.userLanguage;
-            userLang = userLang.substring(0, 2).toLowerCase();
+            let userLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
             if (translations[userLang]) {
                 document.getElementById("langSelect").value = userLang;
                 changeLanguage();
