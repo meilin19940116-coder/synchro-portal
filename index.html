@@ -3,30 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Circle</title>
+    <title>Jessica's Choice - Synchro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* 背景图建议：找一张阳光、有生活气息的欧洲街头或聚会背景 */
         .bg-custom {
             background-image: linear-gradient(rgba(255, 192, 203, 0.4), rgba(255, 182, 193, 0.6)), url('https://raw.githubusercontent.com/meilin19940116-coder/synchro-portal/refs/heads/main/bg.jpg');
             background-size: cover;
             background-position: center;
         }
         .pink-glass {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(255, 182, 193, 0.3);
         }
         .btn-pink {
             background: linear-gradient(135deg, #ff8da1 0%, #ff6b81 100%);
             transition: all 0.3s ease;
         }
-        .btn-pink:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(255, 107, 129, 0.4);
-        }
+        .btn-pink:active { transform: scale(0.95); }
     </style>
 
     <script>
@@ -42,7 +38,7 @@
 <body class="min-h-screen bg-custom flex items-center justify-center p-6">
 
     <div class="absolute top-6 right-6 z-20">
-        <select id="langSelect" onchange="changeLanguage()" class="bg-white/80 border-none text-pink-600 text-sm rounded-full px-4 py-2 shadow-sm cursor-pointer outline-none">
+        <select id="langSelect" onchange="changeLanguage()" class="bg-white/90 border-none text-pink-600 text-sm rounded-full px-4 py-2 shadow-sm outline-none">
             <option value="en">English</option>
             <option value="zh">中文</option>
             <option value="fr">Français</option>
@@ -57,21 +53,22 @@
         </select>
     </div>
 
-    <main class="w-full max-w-sm pink-glass rounded-[2rem] p-10 text-center shadow-xl">
+    <main class="w-full max-w-sm pink-glass rounded-[2.5rem] p-10 text-center shadow-2xl">
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4" id="titleText">Social Circle</h1>
-            <div class="w-12 h-1 bg-pink-300 mx-auto mb-6 rounded-full"></div>
-            <p class="text-gray-600 text-lg font-medium leading-relaxed" id="descText">
-                Join our circle and meet new friends across Europe.
+            <div class="text-pink-400 font-bold text-xs tracking-widest uppercase mb-2">Verified by Jessica</div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4" id="titleText">Synchro</h1>
+            <div class="w-16 h-1 bg-pink-300 mx-auto mb-6 rounded-full"></div>
+            <p class="text-gray-600 text-md font-medium leading-relaxed px-2" id="descText">
+                Tired of bots? So am I. Join my private list for real connections in Europe.
             </p>
         </div>
 
         <button onclick="handleJoinClick(event)" class="btn-pink block w-full py-5 text-white font-bold rounded-2xl text-xl shadow-lg cursor-pointer">
-            <span id="btnText">Join Now</span>
+            <span id="btnText">Count Me In!</span>
         </button>
 
-        <p class="text-[11px] text-gray-400 mt-8" id="footerText">
-            © 2026 Social Network. Privacy Protected.
+        <p class="text-[10px] text-gray-400 mt-8 leading-tight" id="footerText">
+            Real People Only. No Bots Guaranteed.
         </p>
     </main>
 
@@ -79,34 +76,32 @@
         const ENCODED_URL = "aHR0cHM6Ly93d3cuc3luY2hyby1tYXRjaC5jb20=";
 
         function handleJoinClick(event) {
-    event.preventDefault(); 
-    const btnText = document.getElementById("btnText");
-    btnText.innerText = "Connecting..."; // 变成加载状态，稳住老外
+            event.preventDefault(); 
+            const btnText = document.getElementById("btnText");
+            btnText.innerText = "Connecting..."; 
 
-    if (typeof ttq !== 'undefined') {
-        // 建议把事件名换成 Contact，TikTok 对这个标准事件的识别优先级最高
-        ttq.track('Contact'); 
-        console.log("Contact event sent!");
-    }
-    
-    // 给足 1.2 秒，确保信号发回 TikTok 后台
-    setTimeout(() => {
-        window.location.href = atob(ENCODED_URL);
-    }, 1200); 
-}
+            if (typeof ttq !== 'undefined') {
+                ttq.track('Contact'); 
+            }
+            
+            // 保持 1.1 秒，这是一个平衡点
+            setTimeout(() => {
+                window.location.href = atob(ENCODED_URL);
+            }, 1100); 
+        }
 
         const translations = {
-            en: { title: "Social Circle", desc: "Join our circle and meet new friends across Europe.", btn: "Join Now", footer: "© 2026 Social Network. Privacy Protected." },
-            zh: { title: "社交圈子", desc: "加入我们的圈子，结交欧洲各地的朋友。", btn: "立即加入", footer: "© 2026 社交网络. 隐私受保护。" },
-            fr: { title: "Cercle Social", desc: "Rejoignez notre cercle et rencontrez de nouveaux amis en Europe.", btn: "Rejoindre", footer: "© 2026 Réseau Social. Confidentialité protégée." },
-            de: { title: "Sozialer Kreis", desc: "Tritt unserem Kreis bei und lerne neue Freunde in Europa kennen.", btn: "Jetzt beitreten", footer: "© 2026 Soziales Netzwerk. Privatsphäre geschützt." },
-            it: { title: "Cerchia Sociale", desc: "Unisciti alla nostra cerchia e incontra nuovi amici in tutta Europa.", btn: "Unisciti ora", footer: "© 2026 Social Network. Privacy protetta." },
-            es: { title: "Círculo Social", desc: "Únete a nuestro círculo y conoce nuevos amigos en toda Europa.", btn: "Únete ahora", footer: "© 2026 Red Social. Privacidad protegida." },
-            pt: { title: "Círculo Social", desc: "Junte-se ao nosso círculo e conheça novos amigos na Europa.", btn: "Entrar agora", footer: "© 2026 Rede Social. Privacidade protegida." },
-            ja: { title: "ソーシャルサークル", desc: "サークルに参加して、ヨーロッパ中の新しい友達と出会いましょう。", btn: "今すぐ参加", footer: "© 2026 ソーシャルネットワーク。プライバシー保護。" },
-            ko: { title: "소셜 서클", desc: "서클에 가입하여 유럽 전역의 새로운 친구들을 만나보세요.", btn: "지금 가입하기", footer: "© 2026 소셜 네트워크. 개인정보 보호." },
-            ru: { title: "Социальный круг", desc: "Присоединяйтесь к нам и заводите новых друзей по всей Европе.", btn: "Присоединиться", footer: "© 2026 Социальная сеть. Конфиденциальность соблюдена." },
-            ar: { title: "الدائرة الاجتماعية", desc: "انضم إلى دائرتنا وتعرف على أصدقاء جدد في جميع أنحاء أوروبا.", btn: "انضم الآن", footer: "© 2026 شبكة اجتماعية. الخصوصية محفوظة." }
+            en: { title: "Synchro", desc: "Tired of bots? So am I. Join my private list for real connections in Europe.", btn: "Count Me In!", footer: "Real People Only. No Bots Guaranteed." },
+            zh: { title: "Synchro", desc: "讨厌机器人？我也是。加入我的私人名单，在欧洲结交真诚的朋友。", btn: "算我一个！", footer: "仅限真人。拒绝机器人。" },
+            fr: { title: "Synchro", desc: "Marre des bots ? Moi aussi. Rejoignez ma liste privée pour de vraies rencontres en Europe.", btn: "J'en suis !", footer: "Vraies personnes uniquement. Aucun bot garanti." },
+            de: { title: "Synchro", desc: "Genug von Bots? Ich auch. Tritt meiner privaten Liste für echte Kontakte in Europa bei.", btn: "Ich bin dabei!", footer: "Nur echte Menschen. Keine Bots garantiert." },
+            it: { title: "Synchro", desc: "Stanco dei bot? Anch'io. Unisciti alla mia lista privata per connessioni reali in Europa.", btn: "Contami!", footer: "Solo persone reali. Niente bot garantiti." },
+            es: { title: "Synchro", desc: "¿Cansado de los bots? Yo también. Únete a mi lista privada para conexiones reales en Europa.", btn: "¡Cuenta conmigo!", footer: "Solo personas reales. Sin bots garantizados." },
+            pt: { title: "Synchro", desc: "Cansado de bots? Eu também. Junte-se à minha lista privada para conexões reais na Europa.", btn: "Conte comigo!", footer: "Apenas pessoas reais. Sem bots garantidos." },
+            ja: { title: "Synchro", desc: "ボットに飽きましたか？私もです。ヨーロッパでの本物の繋がりのために、私のプライベートリストに参加してください。", btn: "参加する！", footer: "実在の人物のみ。ボットなしを保証。" },
+            ko: { title: "Synchro", desc: "봇에 지치셨나요? 저도 마찬가지입니다. 유럽에서의 진정한 만남을 위해 저의 프라이빗 리스트에 가입하세요.", btn: "저도 참여할게요!", footer: "실제 인물만. 봇 없음 보장." },
+            ru: { title: "Synchro", desc: "Устали от ботов? Я тоже. Присоединяйтесь к моему списку для реальных знакомств в Европе.", btn: "Я в деле!", footer: "Только реальные люди. Без ботов." },
+            ar: { title: "Synchro", desc: "هل سئمت من الروبوتات؟ أنا أيضاً. انضم إلى قائمتي الخاصة للتواصل الحقيقي في أوروبا.", btn: "أنا معك!", footer: "أشخاص حقيقيون فقط. لا روبوتات." }
         };
 
         function changeLanguage() {
