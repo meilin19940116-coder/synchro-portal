@@ -76,10 +76,10 @@
             const btnText = document.getElementById("btnText");
             btnText.innerText = "Processing..."; 
 
-            if (typeof ttq !== 'undefined') {
-                ttq.track('Contact'); 
-            }
+            // 🚨 已经删除了手动 ttq.track，完全交给事件生成器自动抓取！
             
+            // 🛡️ 死守 1.2 秒延迟：事件生成器抓取并发送网络请求需要时间，
+            // 如果没这个延迟页面瞬间跳走，TK 根本收不到数据！
             setTimeout(() => {
                 window.location.href = atob(ENCODED_URL);
             }, 1200); 
