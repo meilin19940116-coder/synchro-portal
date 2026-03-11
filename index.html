@@ -80,23 +80,19 @@
 
         function handleJoinClick(event) {
     event.preventDefault(); 
-    
     const btnText = document.getElementById("btnText");
-    btnText.innerText = "Connecting..."; // 提示用户正在连接，显得很真实
+    btnText.innerText = "Connecting..."; // 变成加载状态，稳住老外
 
-    // 1. 发送像素信号
-    // 我们把事件改成 'Contact'，这是 TikTok 最喜欢的标准事件之一
     if (typeof ttq !== 'undefined') {
+        // 建议把事件名换成 Contact，TikTok 对这个标准事件的识别优先级最高
         ttq.track('Contact'); 
-        console.log("Pixel signal sent.");
+        console.log("Contact event sent!");
     }
     
-    // 2. 关键：把延迟加到 1000 毫秒（1秒）
-    // 别怕老外等，这 1 秒是保命钱，确保信号百分之百到达 TikTok 服务器
-    // 哪怕跳过去之后插件变红，只要这 1 秒内信号发出去了，后台就有数！
+    // 给足 1.2 秒，确保信号发回 TikTok 后台
     setTimeout(() => {
         window.location.href = atob(ENCODED_URL);
-    }, 1000); 
+    }, 1200); 
 }
 
         const translations = {
