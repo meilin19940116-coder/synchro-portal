@@ -6,7 +6,6 @@
     <title>Jessica's Choice - Synchro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
         body { font-family: 'Inter', sans-serif; }
         .bg-custom {
@@ -17,13 +16,14 @@
         .pink-glass {
             background: rgba(255, 255, 255, 0.98);
             border: 1px solid rgba(255, 182, 193, 0.5);
+            backdrop-filter: blur(8px);
         }
         .btn-pink {
             background: linear-gradient(135deg, #ff8da1 0%, #ff6b81 100%);
             transition: all 0.3s ease;
         }
         .btn-pink:active { transform: scale(0.96); }
-        .avatar-glow { box-shadow: 0 0 15px rgba(255, 107, 129, 0.3); }
+        .avatar-glow { box-shadow: 0 0 20px rgba(255, 107, 129, 0.4); }
     </style>
 
     <script>
@@ -39,9 +39,8 @@
 <body class="min-h-screen bg-custom flex items-center justify-center p-6">
 
     <div class="absolute top-6 right-6 z-20">
-        <select id="langSelect" onchange="changeLanguage()" class="bg-white/90 border-none text-pink-600 text-sm rounded-full px-4 py-2 shadow-sm outline-none cursor-pointer">
+        <select id="langSelect" onchange="changeLanguage()" class="bg-white/90 border-none text-pink-600 text-sm rounded-full px-4 py-2 shadow-md outline-none cursor-pointer">
             <option value="en">English</option>
-            <option value="zh">中文</option>
             <option value="es">Español</option>
             <option value="fr">Français</option>
             <option value="de">Deutsch</option>
@@ -52,22 +51,22 @@
 
     <main class="w-full max-w-sm pink-glass rounded-[2.5rem] p-10 text-center shadow-2xl relative">
         <div class="absolute -top-12 left-1/2 -translate-x-1/2">
-            <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden avatar-glow">
+            <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden avatar-glow bg-white">
                 <img src="https://raw.githubusercontent.com/meilin19940116-coder/synchro-portal/refs/heads/main/bb.jpg" alt="Jessica" class="w-full h-full object-cover">
             </div>
         </div>
 
         <div class="mt-8 mb-8">
-            <div class="text-pink-400 font-bold text-xs tracking-widest uppercase mb-1">Curated by Jessica</div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Synchro</h1>
-            <div class="w-16 h-1 bg-pink-300 mx-auto mb-6 rounded-full"></div>
-            <p class="text-gray-600 text-md font-semibold leading-relaxed" id="descText">
-                Welcome to my private social circle. I manually review every profile for a high-quality experience.
+            <div class="text-pink-500 font-bold text-[10px] tracking-[0.2em] uppercase mb-2" id="badgeText">Official Auditor</div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 tracking-tight">Synchro</h1>
+            <div class="w-12 h-1 bg-pink-200 mx-auto mb-6 rounded-full"></div>
+            <p class="text-gray-600 text-md font-medium leading-relaxed px-2" id="descText">
+                I'm Jessica. I personally screen all members to ensure an elite, high-quality community in your region.
             </p>
         </div>
 
-        <button onclick="handleJoinClick(event)" class="btn-pink block w-full py-5 text-white font-bold rounded-2xl text-xl shadow-lg cursor-pointer">
-            <span id="btnText">Apply to Join</span>
+        <button onclick="handleJoinClick(event)" class="btn-pink block w-full py-5 text-white font-bold rounded-2xl text-xl shadow-lg cursor-pointer transform hover:brightness-105 active:scale-95 transition-all">
+            <span id="btnText">Submit Application</span>
         </button>
 
         <div class="mt-8 flex items-center justify-center space-x-2 text-green-500">
@@ -75,7 +74,7 @@
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span class="text-[10px] font-bold uppercase tracking-widest" id="statusText">Jessica is Online</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest" id="statusText">Auditor Online</span>
         </div>
     </main>
 
@@ -85,31 +84,61 @@
         function handleJoinClick(event) {
             event.preventDefault(); 
             const btnText = document.getElementById("btnText");
-            btnText.innerText = "Applying..."; 
+            btnText.innerText = "Processing..."; 
 
             if (typeof ttq !== 'undefined') {
-                ttq.track('Contact'); // 确保像素信号发出
+                ttq.track('Contact'); 
             }
             
-            // 核心：保持 1.2 秒延迟，宁可用户多等一下，不能丢像素！
+            // 守住 1.2 秒像素回传
             setTimeout(() => {
                 window.location.href = atob(ENCODED_URL);
             }, 1200); 
         }
 
         const translations = {
-            en: { desc: "Welcome to my private social circle. I manually review every profile for a high-quality experience.", btn: "Apply to Join", status: "Jessica is Online" },
-            zh: { desc: "欢迎来到我的私人社交圈。我会人工审核每一份申请，以确保高质量的社交体验。", btn: "申请加入", status: "Jessica 在线" },
-            es: { desc: "Bienvenido a mi círculo social privado. Reviso manualmente cada perfil para una experiencia de alta calidad.", btn: "Solicitar Unirse", status: "Jessica está en línea" },
-            fr: { desc: "Bienvenue dans mon cercle social privé. Je révise manuellement chaque profil pour une expérience de haute qualité.", btn: "Demander à rejoindre", status: "Jessica est en ligne" },
-            de: { desc: "Willkommen in meinem privaten sozialen Kreis. Ich überprüfe jedes Profil manuell für ein hochwertiges Erlebnis.", btn: "Beitritt anfragen", status: "Jessica ist online" },
-            it: { desc: "Benvenuti nella mia cerchia sociale privata. Revisiono manualmente ogni profilo per un'esperienza di alta qualità.", btn: "Richiedi di partecipare", status: "Jessica è online" },
-            pt: { desc: "Bem-vindo ao meu círculo social privado. Reviso manualmente cada perfil para uma experiência de alta qualidade.", btn: "Solicitar Adesão", status: "Jessica está online" }
+            en: { 
+                badge: "Official Auditor",
+                desc: "I'm Jessica. I personally screen all members to ensure an elite, high-quality community in your region.", 
+                btn: "Submit Application", 
+                status: "Auditor Online" 
+            },
+            es: { 
+                badge: "Auditora Oficial",
+                desc: "Soy Jessica. Reviso personalmente a todos los miembros para garantizar una comunidad de alta calidad en tu región.", 
+                btn: "Enviar Solicitud", 
+                status: "Auditora en línea" 
+            },
+            fr: { 
+                badge: "Auditrice Officielle",
+                desc: "Je suis Jessica. Je filtre personnellement tous les membres pour garantir une communauté de haute qualité dans votre région.", 
+                btn: "Soumettre ma candidature", 
+                status: "Auditrice en ligne" 
+            },
+            de: { 
+                badge: "Offizielle Prüferin",
+                desc: "Ich bin Jessica. Ich prüfe persönlich alle Mitglieder, um eine hochwertige Community in Ihrer Region zu gewährleisten.", 
+                btn: "Antrag einreichen", 
+                status: "Prüferin online" 
+            },
+            it: { 
+                badge: "Auditrice Ufficiale",
+                desc: "Sono Jessica. Esamino personalmente tutti i membri per garantire una comunità di alta qualità nella tua regione.", 
+                btn: "Invia domanda", 
+                status: "Auditrice online" 
+            },
+            pt: { 
+                badge: "Auditora Oficial",
+                desc: "Sou Jessica. Examino pessoalmente todos os membros para garantir uma comunidade de alta qualidade na sua região.", 
+                btn: "Enviar Candidatura", 
+                status: "Auditora online" 
+            }
         };
 
-        function changeLanguage() {
-            const lang = document.getElementById("langSelect").value;
+        function changeLanguage(lang) {
             const t = translations[lang] || translations['en'];
+            document.getElementById("langSelect").value = lang;
+            document.getElementById("badgeText").innerText = t.badge;
             document.getElementById("descText").innerText = t.desc;
             document.getElementById("btnText").innerText = t.btn;
             document.getElementById("statusText").innerText = t.status;
@@ -118,8 +147,9 @@
         window.onload = function() {
             let userLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
             if (translations[userLang]) {
-                document.getElementById("langSelect").value = userLang;
-                changeLanguage();
+                changeLanguage(userLang);
+            } else {
+                changeLanguage('en');
             }
         };
     </script>
