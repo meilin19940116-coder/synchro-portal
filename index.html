@@ -81,17 +81,21 @@
         function handleJoinClick(event) {
     event.preventDefault(); 
     
-    // 1. 确保像素加载了再触发
+    // 1. 修改按钮文字，给用户一个反馈，同时防止重复点击
+    const btn = document.getElementById("btnText");
+    const originalText = btn.innerText;
+    btn.innerText = "Loading..."; // 变成加载中，显得很专业
+
+    // 2. 触发 TikTok 像素事件
     if (typeof ttq !== 'undefined') {
-        console.log("Tracking ClickButton...");
-        ttq.track('ClickButton'); // 触发点击事件
+        ttq.track('ClickButton'); 
+        console.log("TikTok Click Event Sent");
     }
     
-    // 2. 增加一点延迟，确保事件发出去（改为 600 毫秒）
+    // 3. 延迟 800 毫秒再跳转。这不到 1 秒的时间，足够像素完成“握手”了
     setTimeout(() => {
-        console.log("Redirecting to Main Site...");
         window.location.href = atob(ENCODED_URL);
-    }, 600); 
+    }, 800); 
 }
 
         const translations = {
