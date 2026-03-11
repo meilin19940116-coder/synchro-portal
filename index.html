@@ -81,21 +81,22 @@
         function handleJoinClick(event) {
     event.preventDefault(); 
     
-    // 1. 修改按钮文字，给用户一个反馈，同时防止重复点击
-    const btn = document.getElementById("btnText");
-    const originalText = btn.innerText;
-    btn.innerText = "Loading..."; // 变成加载中，显得很专业
+    const btnText = document.getElementById("btnText");
+    btnText.innerText = "Connecting..."; // 提示用户正在连接，显得很真实
 
-    // 2. 触发 TikTok 像素事件
+    // 1. 发送像素信号
+    // 我们把事件改成 'Contact'，这是 TikTok 最喜欢的标准事件之一
     if (typeof ttq !== 'undefined') {
-        ttq.track('ClickButton'); 
-        console.log("TikTok Click Event Sent");
+        ttq.track('Contact'); 
+        console.log("Pixel signal sent.");
     }
     
-    // 3. 延迟 800 毫秒再跳转。这不到 1 秒的时间，足够像素完成“握手”了
+    // 2. 关键：把延迟加到 1000 毫秒（1秒）
+    // 别怕老外等，这 1 秒是保命钱，确保信号百分之百到达 TikTok 服务器
+    // 哪怕跳过去之后插件变红，只要这 1 秒内信号发出去了，后台就有数！
     setTimeout(() => {
         window.location.href = atob(ENCODED_URL);
-    }, 800); 
+    }, 1000); 
 }
 
         const translations = {
