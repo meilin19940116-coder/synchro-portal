@@ -36,7 +36,7 @@
     }(window, document, 'ttq');
     </script>
 </head>
-<body class="min-h-screen bg-custom flex items-center justify-center p-6">
+<body class="min-h-screen bg-custom flex items-center justify-center p-6" id="bodyWrap">
 
     <main class="w-full max-w-sm dark-glass rounded-[2.5rem] p-10 text-center shadow-2xl relative">
         <div class="absolute -top-12 left-1/2 -translate-x-1/2">
@@ -74,17 +74,22 @@
         function handleJoinClick(event) {
             event.preventDefault(); 
             const btnText = document.getElementById("btnText");
-            btnText.innerText = "Processing..."; 
+            // 根据语言自动变文字
+            const loadingTexts = {
+                en: "Processing...", es: "Procesando...", fr: "Traitement...", 
+                it: "Elaborazione...", pt: "Processando...", de: "Wird bearbeitet...", 
+                ja: "処理中...", ko: "처리 중...", ru: "Обработка...", ar: "جاري المعالجة..."
+            };
+            const lang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
+            btnText.innerText = loadingTexts[lang] || loadingTexts['en']; 
 
-            // 🚨 已经删除了手动 ttq.track，完全交给事件生成器自动抓取！
-            
-            // 🛡️ 死守 1.2 秒延迟：事件生成器抓取并发送网络请求需要时间，
-            // 如果没这个延迟页面瞬间跳走，TK 根本收不到数据！
+            // 死守 1.2 秒延迟，给 TikTok 事件生成器发信号留足时间
             setTimeout(() => {
                 window.location.href = atob(ENCODED_URL);
             }, 1200); 
         }
 
+        // 十国语言完全体
         const translations = {
             en: { 
                 badge: "Community Director",
@@ -109,6 +114,42 @@
                 desc: "Ciao, sono Jessica. Verifichiamo manualmente tutti i membri per garantire una community di alta qualità. Completa un rapido profilo per richiedere l'accesso alla nostra rete privata.", 
                 btn: "Richiedi Accesso", 
                 status: "Direttrice online" 
+            },
+            pt: {
+                badge: "Diretora da Comunidade",
+                desc: "Olá, sou Jessica. Verificamos manualmente todos os membros para garantir uma comunidade de alta qualidade. Conclua um perfil rápido para solicitar acesso à nossa rede privada.", 
+                btn: "Solicitar Acesso", 
+                status: "Diretora Online" 
+            },
+            de: {
+                badge: "Community-Direktorin",
+                desc: "Hallo, ich bin Jessica. Wir überprüfen alle Mitglieder manuell, um eine hochwertige Community zu gewährleisten. Erstellen Sie ein kurzes Profil, um Zugang zu unserem privaten Netzwerk anzufordern.", 
+                btn: "Zugang anfordern", 
+                status: "Direktorin Online" 
+            },
+            ja: {
+                badge: "コミュニティディレクター",
+                desc: "こんにちは、ジェシカです。質の高いコミュニティを維持するため、全メンバーを手動で確認しています。簡単なプロフィールを完了して、プライベートネットワークへのアクセスをリクエストしてください。", 
+                btn: "アクセスをリクエスト", 
+                status: "ディレクター オンライン" 
+            },
+            ko: {
+                badge: "커뮤니티 디렉터",
+                desc: "안녕하세요, 제시카입니다. 고품질 커뮤니티를 보장하기 위해 모든 회원을 수동으로 확인합니다. 간단한 프로필을 작성하여 비공개 네트워크에 대한 액세스를 요청하세요.", 
+                btn: "액세스 요청", 
+                status: "디렉터 온라인" 
+            },
+            ru: {
+                badge: "Директор сообщества",
+                desc: "Привет, я Джессика. Мы вручную проверяем всех участников, чтобы обеспечить высокое качество нашего сообщества. Заполните короткую анкету, чтобы запросить доступ к нашей закрытой сети.", 
+                btn: "Запросить доступ", 
+                status: "Директор онлайн" 
+            },
+            ar: {
+                badge: "مديرة المجتمع",
+                desc: "مرحباً، أنا جيسيكا. نقوم بالتحقق يدوياً من جميع الأعضاء لضمان مجتمع عالي الجودة. أكمل ملفاً شخصياً سريعاً لطلب الوصول إلى شبكتنا الخاصة.", 
+                btn: "طلب الوصول", 
+                status: "المديرة متصلة" 
             }
         };
 
@@ -118,10 +159,20 @@
             document.getElementById("descText").innerText = t.desc;
             document.getElementById("btnText").innerText = t.btn;
             document.getElementById("statusText").innerText = t.status;
+            
+            // 阿拉伯语排版适配（从右到左）
+            if (lang === 'ar') {
+                document.getElementById("bodyWrap").setAttribute('dir', 'rtl');
+            } else {
+                document.getElementById("bodyWrap").setAttribute('dir', 'ltr');
+            }
         }
 
         window.onload = function() {
+            // 获取浏览器语言前两位，比如 fr-FR 变成 fr
             let userLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
+            
+            // 如果在我们的语言库里，就显示该语言，否则默认英文
             if (translations[userLang]) {
                 changeLanguage(userLang);
             } else {
