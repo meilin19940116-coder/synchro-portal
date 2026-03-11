@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jessica's Circle - Synchro</title>
+    <title>Synchro Network</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         .bg-custom {
-            background-image: linear-gradient(rgba(255, 192, 203, 0.4), rgba(255, 182, 193, 0.6)), url('https://raw.githubusercontent.com/meilin19940116-coder/synchro-portal/refs/heads/main/bg.jpg');
+            background-image: linear-gradient(rgba(20, 20, 20, 0.7), rgba(0, 0, 0, 0.9)), url('https://raw.githubusercontent.com/meilin19940116-coder/synchro-portal/refs/heads/main/bg.jpg');
             background-size: cover;
             background-position: center;
         }
-        .pink-glass {
-            background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(255, 182, 193, 0.5);
+        .dark-glass {
+            background: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 107, 129, 0.3);
+            backdrop-filter: blur(12px);
         }
         .btn-pink {
             background: linear-gradient(135deg, #ff8da1 0%, #ff6b81 100%);
             transition: all 0.3s ease;
         }
         .btn-pink:active { transform: scale(0.96); }
-        .avatar-glow { box-shadow: 0 0 15px rgba(255, 107, 129, 0.3); }
+        .avatar-glow { box-shadow: 0 0 20px rgba(255, 107, 129, 0.4); }
     </style>
 
     <script>
@@ -37,35 +38,25 @@
 </head>
 <body class="min-h-screen bg-custom flex items-center justify-center p-6">
 
-    <div class="absolute top-6 right-6 z-20">
-        <select id="langSelect" onchange="changeLanguage()" class="bg-white/90 border-none text-pink-600 text-sm rounded-full px-4 py-2 shadow-sm outline-none cursor-pointer">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="it">Italiano</option>
-            <option value="pt">Português</option>
-        </select>
-    </div>
-
-    <main class="w-full max-w-sm pink-glass rounded-[2.5rem] p-10 text-center shadow-2xl relative">
+    <main class="w-full max-w-sm dark-glass rounded-[2.5rem] p-10 text-center shadow-2xl relative">
         <div class="absolute -top-12 left-1/2 -translate-x-1/2">
-            <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden avatar-glow bg-white">
-                <img src="https://raw.githubusercontent.com/meilin19940116-coder/synchro-portal/refs/heads/main/bb.jpg" alt="Jessica" class="w-full h-full object-cover">
+            <div class="w-24 h-24 rounded-full border-2 border-pink-400 overflow-hidden avatar-glow bg-black">
+                <img src="https://raw.githubusercontent.com/meilin19940116-coder/synchro-portal/refs/heads/main/bb.jpg" alt="Jessica" class="w-full h-full object-cover opacity-90">
             </div>
         </div>
 
-        <div class="mt-8 mb-8">
-            <div class="text-pink-400 font-bold text-xs tracking-widest uppercase mb-1">Hi, I'm Jessica</div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Synchro</h1>
-            <div class="w-16 h-1 bg-pink-300 mx-auto mb-6 rounded-full"></div>
-            <p class="text-gray-600 text-md font-semibold leading-relaxed" id="descText">
-                Tired of fake profiles? I'm hosting this private circle for real people in your area. Come join us!
+        <div class="mt-10 mb-8">
+            <div class="text-pink-400 font-bold text-[11px] tracking-[0.2em] uppercase mb-3" id="badgeText">Community Director</div>
+            <h1 class="text-3xl font-bold text-white mb-4 tracking-tight">Synchro</h1>
+            <div class="w-12 h-1 bg-pink-500/50 mx-auto mb-6 rounded-full"></div>
+            
+            <p class="text-gray-300 text-md font-medium leading-relaxed px-2" id="descText">
+                Hi, I'm Jessica. We manually verify all members to ensure a high-quality community. Complete a quick profile to request access to our private network.
             </p>
         </div>
 
-        <button onclick="handleJoinClick(event)" class="btn-pink block w-full py-5 text-white font-bold rounded-2xl text-xl shadow-lg cursor-pointer">
-            <span id="btnText">Enter Circle</span>
+        <button onclick="handleJoinClick(event)" class="btn-pink block w-full py-5 text-white font-bold rounded-2xl text-[1.1rem] shadow-[0_0_20px_rgba(255,107,129,0.3)] cursor-pointer">
+            <span id="btnText">Request Access</span>
         </button>
 
         <div class="mt-8 flex items-center justify-center space-x-2 text-green-500">
@@ -73,7 +64,7 @@
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span class="text-[10px] font-bold uppercase tracking-widest" id="statusText">I'm Online Now</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest" id="statusText">Director Online</span>
         </div>
     </main>
 
@@ -83,7 +74,7 @@
         function handleJoinClick(event) {
             event.preventDefault(); 
             const btnText = document.getElementById("btnText");
-            btnText.innerText = "Connecting..."; 
+            btnText.innerText = "Processing..."; 
 
             if (typeof ttq !== 'undefined') {
                 ttq.track('Contact'); 
@@ -95,17 +86,35 @@
         }
 
         const translations = {
-            en: { desc: "Tired of fake profiles? I'm hosting this private circle for real people in your area. Come join us!", btn: "Enter Circle", status: "I'm Online Now" },
-            es: { desc: "¿Cansado de perfiles falsos? Organizo este círculo privado para personas reales en tu zona. ¡Únete!", btn: "Entrar al Círculo", status: "Estoy en línea ahora" },
-            fr: { desc: "Marre des faux profils ? J'anime ce cercle privé pour de vraies personnes dans votre région. Rejoignez-nous !", btn: "Entrer dans le cercle", status: "Je suis en ligne" },
-            de: { desc: "Genug von Fake-Profilen? Ich leite diesen privaten Kreis für echte Menschen in deiner Nähe. Mach mit!", btn: "Kreis beitreten", status: "Ich bin jetzt online" },
-            it: { desc: "Stanco dei profili fake? Gestisco questa cerchia privata per persone reali nella tua zona. Unisciti a noi!", btn: "Entra nella cerchia", status: "Sono online ora" },
-            pt: { desc: "Cansado de perfis falsos? Organizo este círculo privado para pessoas reais na sua área. Junte-se a nós!", btn: "Entrar no Círculo", status: "Estou online agora" }
+            en: { 
+                badge: "Community Director",
+                desc: "Hi, I'm Jessica. We manually verify all members to ensure a high-quality community. Complete a quick profile to request access to our private network.", 
+                btn: "Request Access", 
+                status: "Director Online" 
+            },
+            es: { 
+                badge: "Directora de Comunidad",
+                desc: "Hola, soy Jessica. Verificamos manualmente a todos los miembros para asegurar una comunidad de alta calidad. Completa un perfil rápido para solicitar acceso a nuestra red privada.", 
+                btn: "Solicitar Acceso", 
+                status: "Directora en línea" 
+            },
+            fr: { 
+                badge: "Directrice Communauté",
+                desc: "Bonjour, je suis Jessica. Nous vérifions manuellement tous les membres pour garantir une communauté de haute qualité. Complétez un profil rapide pour demander l'accès à notre réseau privé.", 
+                btn: "Demander l'accès", 
+                status: "Directrice en ligne" 
+            },
+            it: { 
+                badge: "Direttrice Community",
+                desc: "Ciao, sono Jessica. Verifichiamo manualmente tutti i membri per garantire una community di alta qualità. Completa un rapido profilo per richiedere l'accesso alla nostra rete privata.", 
+                btn: "Richiedi Accesso", 
+                status: "Direttrice online" 
+            }
         };
 
         function changeLanguage(lang) {
             const t = translations[lang] || translations['en'];
-            document.getElementById("langSelect").value = lang;
+            document.getElementById("badgeText").innerText = t.badge;
             document.getElementById("descText").innerText = t.desc;
             document.getElementById("btnText").innerText = t.btn;
             document.getElementById("statusText").innerText = t.status;
