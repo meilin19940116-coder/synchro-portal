@@ -79,10 +79,20 @@
         const ENCODED_URL = "aHR0cHM6Ly93d3cuc3luY2hyby1tYXRjaC5jb20=";
 
         function handleJoinClick(event) {
-            event.preventDefault(); 
-            if (typeof ttq !== 'undefined') { ttq.track('ClickButton'); }
-            setTimeout(() => { window.location.href = atob(ENCODED_URL); }, 300);
-        }
+    event.preventDefault(); 
+    
+    // 1. 确保像素加载了再触发
+    if (typeof ttq !== 'undefined') {
+        console.log("Tracking ClickButton...");
+        ttq.track('ClickButton'); // 触发点击事件
+    }
+    
+    // 2. 增加一点延迟，确保事件发出去（改为 600 毫秒）
+    setTimeout(() => {
+        console.log("Redirecting to Main Site...");
+        window.location.href = atob(ENCODED_URL);
+    }, 600); 
+}
 
         const translations = {
             en: { title: "Social Circle", desc: "Join our circle and meet new friends across Europe.", btn: "Join Now", footer: "© 2026 Social Network. Privacy Protected." },
